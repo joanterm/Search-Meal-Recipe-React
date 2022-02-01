@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DisplayRecipe from "./DisplayRecipe";
 
 const SearchRecipe = () => {
 
@@ -7,7 +8,7 @@ const SearchRecipe = () => {
 
     const searchRecipe = (e) => {
         e.preventDefault()
-        fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=broccoli")
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${ingredient}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`Your error code is: ${response.status}`)
@@ -15,15 +16,24 @@ const SearchRecipe = () => {
             return response.json()
         })
         .then((data) => {
-            console.log(data);       
+            console.log(data); 
+            setRecipeData(data.meals)      
         })
     }
 
-
     const handleSubmit = (e) => {
-        // setIngredient(e.target.value)
+        setIngredient(e.target.value)
         console.log(e.target.value)
     }
+
+    const recipeElement = recipeData.map((e => {
+        return <DisplayRecipe 
+            key={e.idMeal} 
+            recipeName={e.strMeal} 
+            recipeInstructions={e.strInstructions}
+            recipeImage={e.strMealThumb}
+            />
+    }))
 
     return ( 
         <div>
@@ -36,8 +46,13 @@ const SearchRecipe = () => {
                 />
                 <button>Search</button>
             </form>
+            {recipeElement}
         </div>
      );
 }
  
 export default SearchRecipe;
+
+
+
+// https://www.themealdb.com/api.php
