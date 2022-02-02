@@ -5,6 +5,10 @@ const DisplayRecipe = (props) => {
             <p>{props.recipeName}</p>
             <p>{props.recipeInstructions}</p>
             <img src={props.recipeImage} />
+            <h3>{props.ingredient}</h3>
+            <p>---------------------------------------</p>
+            <p>INGREDIENTS HERE:</p>
+
         </section>
      );
 }

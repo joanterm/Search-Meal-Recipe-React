@@ -6,6 +6,7 @@ const SearchRecipe = () => {
     const [ingredient, setIngredient] = useState("")
     const [recipeData, setRecipeData] = useState([])
 
+
     const searchRecipe = (e) => {
         e.preventDefault()
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${ingredient}`)
@@ -17,7 +18,7 @@ const SearchRecipe = () => {
         })
         .then((data) => {
             console.log(data); 
-            setRecipeData(data.meals)      
+            setRecipeData(data.meals)     
         })
     }
 
@@ -32,8 +33,20 @@ const SearchRecipe = () => {
             recipeName={e.strMeal} 
             recipeInstructions={e.strInstructions}
             recipeImage={e.strMealThumb}
+            ingredient={e.strIngredient1}
             />
     }))
+
+
+    const ingr = recipeData.map((e) => {
+        const arr=[]
+        for(let i=1; i<=20; i++) {
+           arr.push((e[`strIngredient${i}`]))
+        }
+        return arr;
+    })
+    console.log(ingr)
+
 
     return ( 
         <div>
@@ -46,7 +59,7 @@ const SearchRecipe = () => {
                 />
                 <button>Search</button>
             </form>
-            {recipeElement}
+            {recipeElement} 
         </div>
      );
 }
