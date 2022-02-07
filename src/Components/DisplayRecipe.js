@@ -8,7 +8,6 @@ const DisplayRecipe = (props) => {
             <h3>{props.ingredient}</h3>
             <p>---------------------------------------</p>
             <p>INGREDIENTS HERE:</p>
-
         </section>
      );
 }

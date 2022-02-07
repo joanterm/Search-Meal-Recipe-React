@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DisplayRecipe from "./DisplayRecipe";
+import "../Styling/SearchRecipe.css"
 
 const SearchRecipe = () => {
 
@@ -37,6 +38,20 @@ const SearchRecipe = () => {
             />
     }))
 
+    // const recipeElement = recipeData.map((e) => {
+    //     const arr=[]
+    //     for(let i=1; i<=20; i++) {
+    //         arr.push(
+    //             <DisplayRecipe 
+    //             recipeName={e.strMeal}
+    //             ing={e[`strIngredient${i}`]}
+    //             />
+    //         )
+    //     }
+    //     return arr;
+    // })
+    // console.log(recipeElement)
+
 
     const ingr = recipeData.map((e) => {
         const arr=[]
@@ -45,8 +60,10 @@ const SearchRecipe = () => {
         }
         return arr;
     })
-    console.log(ingr)
 
+    const newin = ingr.map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
+    newin.map((e) => <p>{e}</p>)
+    console.log(newin)
 
     return ( 
         <div>
@@ -59,7 +76,10 @@ const SearchRecipe = () => {
                 />
                 <button>Search</button>
             </form>
-            {recipeElement} 
+            {recipeElement}
+            {newin}
+            {/* {newin.forEach((e) => <p>{e}</p>)} */}
+
         </div>
      );
 }
