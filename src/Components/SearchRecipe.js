@@ -28,22 +28,41 @@ const SearchRecipe = () => {
         console.log(e.target.value)
     }
 
-    const recipeElement = recipeData.map((e => {
+
+    // CREATES AN ARRAY OF INGREDIENTS FOR EACH RECIPE, AND MAPS OVER IT UNTIL IT DISPLAYS IT AS A LIST
+    const ingredientList = recipeData.map((e) => {
+        const arr=[]
+        for(let i=1; i<=20; i++) {
+           arr.push((e[`strIngredient${i}`]))
+        }
+        return arr;
+    }).map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
+
+    // CREATES AN ELEMENT THAT WILL USE A REUSABLE COMPONENT TO DISPLAY DATA
+    const recipeElement = recipeData.map((e, index) => {
         return <DisplayRecipe 
-            key={e.idMeal} 
+            key={e.idMeal}  
             recipeName={e.strMeal} 
-            recipeInstructions={e.strInstructions}
-            recipeImage={e.strMealThumb}
-            ingredient={e.strIngredient1}
-            />
-    }))
+            recipeInstructions={e.strInstructions} 
+            ingredient={ingredientList[index]}/>
+    })
+
+
+    // const recipeElement = recipeData.map((e => {
+    //     return <DisplayRecipe 
+    //         key={e.idMeal} 
+    //         recipeName={e.strMeal} 
+    //         recipeInstructions={e.strInstructions}
+    //         // recipeImage={e.strMealThumb}
+    //         />
+    // }))
 
     // const recipeElement = recipeData.map((e) => {
     //     const arr=[]
     //     for(let i=1; i<=20; i++) {
     //         arr.push(
     //             <DisplayRecipe 
-    //             recipeName={e.strMeal}
+    //             recipeName={e.strMeal} 
     //             ing={e[`strIngredient${i}`]}
     //             />
     //         )
@@ -52,18 +71,27 @@ const SearchRecipe = () => {
     // })
     // console.log(recipeElement)
 
+    // const recipeElement = recipeData.map((e) => {
+    //     const arr=[]
+    //     for(let i=1; i<=20; i++) {
+    //        arr.push((e[`strIngredient${i}`]))
+    //     }
+    //     return arr;
+    // }).map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
+    
 
-    const ingr = recipeData.map((e) => {
-        const arr=[]
-        for(let i=1; i<=20; i++) {
-           arr.push((e[`strIngredient${i}`]))
-        }
-        return arr;
-    })
 
-    const newin = ingr.map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
-    newin.map((e) => <p>{e}</p>)
-    console.log(newin)
+    // const ingr = recipeData.map((e) => {
+    //     const arr=[]
+    //     for(let i=1; i<=20; i++) {
+    //        arr.push((e[`strIngredient${i}`]))
+    //     }
+    //     return arr;
+    // }).map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
+
+    // const newin = ingr.map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
+    // // newin.map((e) => <p>{e}</p>)
+    // console.log(newin)
 
     return ( 
         <div>
@@ -77,9 +105,6 @@ const SearchRecipe = () => {
                 <button>Search</button>
             </form>
             {recipeElement}
-            {newin}
-            {/* {newin.forEach((e) => <p>{e}</p>)} */}
-
         </div>
      );
 }
