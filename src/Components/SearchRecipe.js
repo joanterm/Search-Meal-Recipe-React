@@ -30,68 +30,28 @@ const SearchRecipe = () => {
 
 
     // CREATES AN ARRAY OF INGREDIENTS FOR EACH RECIPE, AND MAPS OVER IT UNTIL IT DISPLAYS IT AS A LIST
-    const ingredientList = recipeData.map((e) => {
+    const ingredientList = recipeData.map((allData) => {
         const arr=[]
         for(let i=1; i<=20; i++) {
-           arr.push((e[`strIngredient${i}`]))
+           arr.push((allData[`strMeasure${i}`] + ' ' + allData[`strIngredient${i}`]))
         }
         return arr;
-    }).map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
-
-    // CREATES AN ELEMENT THAT WILL USE A REUSABLE COMPONENT TO DISPLAY DATA
-    const recipeElement = recipeData.map((e, index) => {
-        return <DisplayRecipe 
-            key={e.idMeal}  
-            recipeName={e.strMeal} 
-            recipeInstructions={e.strInstructions} 
-            ingredient={ingredientList[index]}/>
+    }).map((measureAndIngredientData) => {
+        return <div>
+            {measureAndIngredientData.map((measureAndIngredientElement, index) =>
+                <p key={index}>{measureAndIngredientElement}</p>
+            )}
+        </div>
     })
 
-
-    // const recipeElement = recipeData.map((e => {
-    //     return <DisplayRecipe 
-    //         key={e.idMeal} 
-    //         recipeName={e.strMeal} 
-    //         recipeInstructions={e.strInstructions}
-    //         // recipeImage={e.strMealThumb}
-    //         />
-    // }))
-
-    // const recipeElement = recipeData.map((e) => {
-    //     const arr=[]
-    //     for(let i=1; i<=20; i++) {
-    //         arr.push(
-    //             <DisplayRecipe 
-    //             recipeName={e.strMeal} 
-    //             ing={e[`strIngredient${i}`]}
-    //             />
-    //         )
-    //     }
-    //     return arr;
-    // })
-    // console.log(recipeElement)
-
-    // const recipeElement = recipeData.map((e) => {
-    //     const arr=[]
-    //     for(let i=1; i<=20; i++) {
-    //        arr.push((e[`strIngredient${i}`]))
-    //     }
-    //     return arr;
-    // }).map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
-    
-
-
-    // const ingr = recipeData.map((e) => {
-    //     const arr=[]
-    //     for(let i=1; i<=20; i++) {
-    //        arr.push((e[`strIngredient${i}`]))
-    //     }
-    //     return arr;
-    // }).map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
-
-    // const newin = ingr.map((e) => <div className="div">{e.map((e) => <p>{e}</p>)}</div>)
-    // // newin.map((e) => <p>{e}</p>)
-    // console.log(newin)
+    // CREATES AN ELEMENT THAT WILL USE A REUSABLE COMPONENT TO DISPLAY DATA; MERGES BOTH DATAS TOGETHER
+    const recipeElement = recipeData.map((allData, index) => {
+        return <DisplayRecipe 
+            key={allData.idMeal}  
+            recipeName={allData.strMeal} 
+            recipeInstructions={allData.strInstructions} 
+            recipeIngredients={ingredientList[index]}/>
+    })
 
     return ( 
         <div>

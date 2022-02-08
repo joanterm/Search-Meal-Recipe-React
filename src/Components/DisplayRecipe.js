@@ -5,7 +5,7 @@ const DisplayRecipe = (props) => {
             <p>{props.recipeName}</p>
             <p>{props.recipeInstructions}</p>
             <img src={props.recipeImage} />
-            <h3>{props.ingredient}</h3>
+            {props.recipeIngredients}
         </section>
      );
 }
