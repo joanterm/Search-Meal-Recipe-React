@@ -6,8 +6,9 @@ const SearchRecipe = () => {
 
     const [ingredient, setIngredient] = useState("")
     const [recipeData, setRecipeData] = useState([])
+    const [isDataNull, setIsDataNull] = useState(false)
 
-
+    // FETCH API
     const searchRecipe = (e) => {
         e.preventDefault()
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${ingredient}`)
@@ -18,34 +19,21 @@ const SearchRecipe = () => {
             return response.json()
         })
         .then((data) => {
-            console.log(data); 
-            setRecipeData(data.meals) 
+            // console.log(data)
+            if (data.meals === null || ingredient === "") {
+                setIsDataNull(true)
+            } else {
+                setRecipeData(data.meals) 
+                setIsDataNull(false)
+            }
         })
     }
 
+    // HANDLES THE SEARCH BUTTON
     const handleSubmit = (e) => {
         setIngredient(e.target.value)
         console.log(e.target.value)
     }
-
-
-    if (recipeData === null) {
-        return (
-            <div>
-                <form action="#" onSubmit={searchRecipe}>
-                    <input 
-                        type="text" 
-                        placeholder="ingredient here"
-                        name="ingredient"
-                        value={ingredient}
-                        onChange={handleSubmit}
-                    />
-                    <button>Search</button>
-                </form>
-                <p>wrong value</p>
-        </div>      
-        )  
-    }  
 
     // CREATES AN ARRAY OF INGREDIENTS FOR EACH RECIPE, AND MAPS OVER IT UNTIL IT DISPLAYS IT AS A LIST
     const ingredientList = recipeData.map((allData) => {
@@ -68,28 +56,32 @@ const SearchRecipe = () => {
             key={allData.idMeal}  
             recipeName={allData.strMeal} 
             recipeInstructions={allData.strInstructions} 
+            recipeImage={allData.strMealThumb}
             recipeIngredients={ingredientList[index]}/>
     })
+
+    // CREATES AN ELEMENT THAT WILL DISPLAY A MESSAGE WHEN isDataNull IS TRUE
+    const nullDataElement = <p>Ooops... This ingredient doesn't exist. Try again</p>
     
     return ( 
-        <div>
-            <form action="#" onSubmit={searchRecipe}>
-                <input 
-                    type="text" 
-                    placeholder="ingredient here"
-                    name="ingredient"
-                    value={ingredient}
-                    onChange={handleSubmit}
-                />
-                <button>Search</button>
-            </form>
-            {recipeElement}
-        </div>
+        <main>
+            <div className="form-area">
+                <form action="#" onSubmit={searchRecipe}>
+                    <input 
+                        type="text" 
+                        placeholder="ingredient here"
+                        // name="ingredient"
+                        value={ingredient}
+                        onChange={handleSubmit}
+                    />
+                    <button>Search</button>
+                </form>
+            </div>
+            <div className="recipe-area">
+                {isDataNull ? nullDataElement : recipeElement}
+            </div>
+        </main>
      );
 }
  
 export default SearchRecipe;
-
-
-
-// https://www.themealdb.com/api.php

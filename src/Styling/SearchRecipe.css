@@ -1,7 +1,13 @@
-.div {
-    border: 3px solid pink;
+.form-area {
+    border: 3px solid blue;
 }
 
-/* p {
-    border: 3px solid blue;
-} */
+.recipe-area {
+    border: 3px solid violet;
+    max-width: 1500px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
