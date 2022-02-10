@@ -13,13 +13,13 @@ const SearchRecipe = () => {
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${ingredient}`)
         .then((response) => {
             if (!response.ok) {
-                throw new Error(`Your error code is: ${response.status}`)
+                throw Error(`Your error code is: ${response.status}`)
             }
             return response.json()
         })
         .then((data) => {
             console.log(data); 
-            setRecipeData(data.meals)     
+            setRecipeData(data.meals) 
         })
     }
 
@@ -28,6 +28,24 @@ const SearchRecipe = () => {
         console.log(e.target.value)
     }
 
+
+    if (recipeData === null) {
+        return (
+            <div>
+                <form action="#" onSubmit={searchRecipe}>
+                    <input 
+                        type="text" 
+                        placeholder="ingredient here"
+                        name="ingredient"
+                        value={ingredient}
+                        onChange={handleSubmit}
+                    />
+                    <button>Search</button>
+                </form>
+                <p>wrong value</p>
+        </div>      
+        )  
+    }  
 
     // CREATES AN ARRAY OF INGREDIENTS FOR EACH RECIPE, AND MAPS OVER IT UNTIL IT DISPLAYS IT AS A LIST
     const ingredientList = recipeData.map((allData) => {
@@ -52,14 +70,15 @@ const SearchRecipe = () => {
             recipeInstructions={allData.strInstructions} 
             recipeIngredients={ingredientList[index]}/>
     })
-
+    
     return ( 
         <div>
-            <form action="" onSubmit={searchRecipe}>
+            <form action="#" onSubmit={searchRecipe}>
                 <input 
                     type="text" 
                     placeholder="ingredient here"
-                    // value={ingredient}
+                    name="ingredient"
+                    value={ingredient}
                     onChange={handleSubmit}
                 />
                 <button>Search</button>
