@@ -64,23 +64,23 @@ const SearchRecipe = () => {
     const nullDataElement = <p>Ooops... This ingredient doesn't exist. Try again</p>
     
     return ( 
-        <main>
+        <section>
             <div className="form-area">
                 <form action="#" onSubmit={searchRecipe}>
                     <input 
                         type="text" 
-                        placeholder="ingredient here"
+                        placeholder="E.g. chicken..."
                         // name="ingredient"
                         value={ingredient}
                         onChange={handleSubmit}
                     />
-                    <button>Search</button>
+                    <button className="form-area--btn">Search</button>
                 </form>
             </div>
             <div className="recipe-area">
                 {isDataNull ? nullDataElement : recipeElement}
             </div>
-        </main>
+        </section>
      );
 }
  

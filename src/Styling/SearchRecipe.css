@@ -1,9 +1,32 @@
-.form-area {
-    border: 3px solid blue;
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input,
+.form-area--btn {
+    text-align: center;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    border-radius: 5px;
+    font-family: inherit;
+    border: 2px solid #5f7745;
+}
+
+.form-area--btn {
+    background-color: #acc444;
+}
+
+.form-area--btn:hover,
+.form-area--btn:focus {
+    background-color: #bbce64;
 }
 
 .recipe-area {
-    border: 3px solid violet;
     max-width: 1500px;
     width: 90%;
     display: flex;

@@ -13,13 +13,13 @@ const DisplayRecipe = (props) => {
             )
         })
     }
-    
+
     return ( 
         <section className="display-recipe--card">
             <h1>{props.recipeName}</h1>
-            <img src={props.recipeImage} />
-            <button onClick={openRecipe}>OPEN RECIPE</button>
+            <img src={props.recipeImage} className="display-recipe--img"/>
             {props.recipeIngredients}
+            {!isRecipeOpen ? <button className="display-recipe--btn-open" onClick={openRecipe}>OPEN RECIPE</button> : <button className="display-recipe--btn-close" onClick={openRecipe}>CLOSE RECIPE</button>}
             <p>{isRecipeOpen && props.recipeInstructions}</p>
         </section>
      );
