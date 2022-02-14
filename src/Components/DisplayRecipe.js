@@ -5,15 +5,14 @@ const DisplayRecipe = (props) => {
 
     const [isRecipeOpen, setIsRecipeOpen] = useState(false)
 
+    // FOR TOGGLING OPEN/CLOSE RECIPE BUTTON
     const openRecipe = () => {
-        console.log("open")
         setIsRecipeOpen((prev) => {
             return (
                 !prev
             )
         })
     }
-
     return ( 
         <section className="display-recipe--card">
             <h1>{props.recipeName}</h1>

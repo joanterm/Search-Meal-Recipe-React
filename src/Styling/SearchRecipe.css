@@ -1,3 +1,4 @@
+/* FORM AREA */
 form {
     display: flex;
     flex-direction: column;
@@ -17,6 +18,7 @@ input,
     border: 2px solid #5f7745;
 }
 
+/* FORM BUTTON */
 .form-area--btn {
     background-color: #acc444;
 }
@@ -26,6 +28,7 @@ input,
     background-color: #bbce64;
 }
 
+/* RECIPE INFO AREA */
 .recipe-area {
     max-width: 1500px;
     width: 90%;

@@ -61,7 +61,7 @@ const SearchRecipe = () => {
     })
 
     // CREATES AN ELEMENT THAT WILL DISPLAY A MESSAGE WHEN isDataNull IS TRUE
-    const nullDataElement = <p>Ooops... This ingredient doesn't exist. Try again</p>
+    const nullDataElement = <p>Ooops... This ingredient doesn't exist. Please try again.</p>
     
     return ( 
         <section>
